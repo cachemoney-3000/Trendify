@@ -26,6 +26,11 @@ export default function Dashboard({ code }) {
     const [topArtists, setTopArtists] = useState();
     const [topTracks, setTopTracks] = useState();
 
+    const [timeRange, setTimeRange] = useState('medium_term');
+    const updateTimeRange = (timeTerm) => {
+        setTimeRange(timeTerm);
+    } 
+
     // ACCESS TOKEN
     useEffect(() => {
         if (!accessToken) return;
@@ -83,7 +88,7 @@ export default function Dashboard({ code }) {
         }
     );}, [accessToken])
 
-    // TOP TRACKS
+    // TOP TRACKS 
     useEffect(() => {
         if(!accessToken) return
         spotifyApi.getMyTopTracks({time_range: "long_term"})
@@ -100,47 +105,69 @@ export default function Dashboard({ code }) {
     return (
         <div class = "bg-[#111827] min-h-screen font-poppins">
             <Nav />
-            {currentPath.includes('/landing') ? 
-                <Profile     
-                profile = {user}
-                numFollowing = {numFollowing}
-                playlist = {playlist}
-                topTracks = {topTracks}
-                topArtists = {topArtists}
-                /> : 
-            null }
-            {currentPath.includes('/toptracks') ? 
-                <Tracks path = '/toptracks'      
-                profile = {user}
-                numFollowing = {numFollowing}
-                playlist = {playlist}
-                topTracks = {topTracks}
-                topArtists = {topArtists}
-            /> : 
-            null }
-            {currentPath.includes('/topartist') ? 
-                <Artists     
-                profile = {user}
-                numFollowing = {numFollowing}
-                playlist = {playlist}
-                topTracks = {topTracks}
-                topArtists = {topArtists}
-                /> : 
-            null }
-            {currentPath.includes('/player') ? 
-                <Player 
-                    accessToken={accessToken}
-                    user = {user}
-                /> : 
-            null }
-            {currentPath.includes('/playlist') ? 
-                <Playlists     
-                profile = {user}
-                numFollowing = {numFollowing}
-                playlist = {playlist}
-                topTracks = {topTracks}
-                topArtists = {topArtists}
-                /> : 
-            null }
+            <>
+                {user && numFollowing && topTracks && topArtists && accessToken ?
+                    <div>
+                        {currentPath.includes('/landing') ? 
+                            <Profile     
+                            profile = {user}
+                            numFollowing = {numFollowing}
+                            playlist = {playlist}
+                            topTracks = {topTracks}
+                            topArtists = {topArtists}
+                            /> : 
+                        null }
+                        {currentPath.includes('/toptracks') ? 
+                            <Tracks path = '/toptracks'      
+                            profile = {user}
+                            numFollowing = {numFollowing}
+                            playlist = {playlist}
+                            topTracks = {topTracks}
+                            topArtists = {topArtists}
+                        /> : 
+                        null }
+                        {currentPath.includes('/topartist') ? 
+                            <Artists     
+                            profile = {user}
+                            numFollowing = {numFollowing}
+                            playlist = {playlist}
+                            topTracks = {topTracks}
+                            topArtists = {topArtists}
+                            setTimeRange = {updateTimeRange}
+                            /> : 
+                        null }
+                        {currentPath.includes('/player') ? 
+                            <Player 
+                                accessToken={accessToken}
+                                user = {user}
+                            /> : 
+                        null }
+                        {currentPath.includes('/playlist') ? 
+                            <Playlists     
+                            profile = {user}
+                            numFollowing = {numFollowing}
+                            playlist = {playlist}
+                            topTracks = {topTracks}
+                            topArtists = {topArtists}
+                            /> : 
+                        null }
+                    </div>
+                :
+                <div class = "flex h-screen justify-center items-center">
+                      <div class="
+                        spinner-border
+                        animate-spin
+                        inline-block
+                        w-8
+                        h-8
+                        border-4
+                        rounded-full
+                        text-purple-500
+                        " role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+                }
+            </>
         </div>
 )}
