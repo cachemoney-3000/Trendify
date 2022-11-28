@@ -12,6 +12,7 @@ import PasswordResetPage2 from './pages/PasswordResetPage2'
 import VerifyFailedPage from './pages/VerifyFailedPage'
 import VerifySuccessfulPage from './pages/VerifySuccessfulPage'
 import DashboardPage from './pages/DashboardPage';
+import AppUrlListener from './components/AppUrlListener';
 
 import PrivateRoute from "./routes/PrivateRoute";
 import Track from './components/spotify/spotify.track';
@@ -32,6 +33,7 @@ function App() {
 
       
       <Route element={<PrivateRoute />}>
+        <AppUrlListener></AppUrlListener>
         <Route path="/" element={code ? <DashboardPage code={code} /> : <LandingPage/>} />
         <Route path="/profile" element={code ? <DashboardPage code={code} /> : <LandingPage/>} />
         <Route path="/topartist" element={code ? <DashboardPage code={code} /> : <LandingPage/>} />

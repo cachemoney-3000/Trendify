@@ -187,7 +187,7 @@ function Login() {
           sitekey= "6LeUVcUiAAAAACHBI-FVwAqopfU09sH73VTeB34G"
           size = "invisible"
           ref={captchaRef}
-        />,
+        />
     </div>
   );
 };

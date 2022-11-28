@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/static/css/main.03043974.css",
+    "main.js": "/static/js/main.5fc74a75.js",
+    "static/js/787.cda612ba.chunk.js": "/static/js/787.cda612ba.chunk.js",
+    "static/media/ScreenMockUps.png": "/static/media/ScreenMockUps.4bd90f96e0fd4334ae7d.png",
+    "static/media/TrendiPlayer.png": "/static/media/TrendiPlayer.ec1ab069b6cb6aaf6c18.png",
+    "static/media/logoWhite.png": "/static/media/logoWhite.3c48f79aeb9599739558.png",
+    "static/media/logo-sm.png": "/static/media/logo-sm.725f61ff4dd8635ff02e.png",
+    "index.html": "/index.html",
+    "main.03043974.css.map": "/static/css/main.03043974.css.map",
+    "main.5fc74a75.js.map": "/static/js/main.5fc74a75.js.map",
+    "787.cda612ba.chunk.js.map": "/static/js/787.cda612ba.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.03043974.css",
+    "static/js/main.5fc74a75.js"
+  ]
+}
