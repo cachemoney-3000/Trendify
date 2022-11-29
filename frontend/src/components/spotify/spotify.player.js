@@ -70,7 +70,7 @@ export default function Player({ accessToken, user }) {
 
 
   return (
-    <div class ="lg:pt-8 pt-4 lg:h-screen h-fit lg:w-1/2 mr-auto ml-auto">
+    <div class ="lg:pt-8 pt-4 lg:h-screen h-fit lg:w-1/2 mr-auto ml-auto lg:py-0 py-4">
           <h1 class="text-slate-50 text-5xl lg:mt-10 mt-2 text-center font-bold lg:mb=1 -mb-4 flex justify-center items-center space-x-2">
             <img select draggable="false" class="flex items-center pb-4 lg:w-72 w-52" src={trendiPlayerLogo} alt="Trendify"></img> 
           </h1>

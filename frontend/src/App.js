@@ -12,7 +12,6 @@ import PasswordResetPage2 from './pages/PasswordResetPage2'
 import VerifyFailedPage from './pages/VerifyFailedPage'
 import VerifySuccessfulPage from './pages/VerifySuccessfulPage'
 import DashboardPage from './pages/DashboardPage';
-import AppUrlListener from './components/AppUrlListener';
 
 import PrivateRoute from "./routes/PrivateRoute";
 import Track from './components/spotify/spotify.track';
@@ -22,26 +21,15 @@ function App() {
   return (
   <BrowserRouter>
     <Routes>
-      <Route path= "/login" element={<LoginPage />} />
-      <Route path="/signup" element={<SignUpPage />}/>
-      <Route path="/verification-successful" element={<VerifySuccessfulPage />}/>
-      <Route path="/verification-failed" element={<VerifyFailedPage />}/>
-      <Route path="/resetpage" element={<PasswordResetPage />}/>
-      <Route path="/verifyAccount/:userID/:uniqueEmailToken" element={<VerifyPage />}/>
-      <Route path="/resetPassword/:userID/:passwordResetToken" element={<PasswordResetPage2 />}/>
 
+      <Route path="/" element={code ? <DashboardPage code={code} /> : <LandingPage/>} />
+      <Route path="/profile" element={code ? <DashboardPage code={code} /> : <LandingPage/>} />
+      <Route path="/topartist" element={code ? <DashboardPage code={code} /> : <LandingPage/>} />
+      <Route path="/toptracks" element={code ? <DashboardPage code={code} /> : <LandingPage/>} />
+      <Route path="/player" element={code ? <DashboardPage code={code} /> : <LandingPage/>} />
+      <Route path="/playlist" element={code ? <DashboardPage code={code} /> : <LandingPage/>} />
+      <Route path="/track/:trackId/:musicName/:albumName/:artist" element={<Track/>}/>
 
-      
-      <Route element={<PrivateRoute />}>
-        <AppUrlListener></AppUrlListener>
-        <Route path="/" element={code ? <DashboardPage code={code} /> : <LandingPage/>} />
-        <Route path="/profile" element={code ? <DashboardPage code={code} /> : <LandingPage/>} />
-        <Route path="/topartist" element={code ? <DashboardPage code={code} /> : <LandingPage/>} />
-        <Route path="/toptracks" element={code ? <DashboardPage code={code} /> : <LandingPage/>} />
-        <Route path="/player" element={code ? <DashboardPage code={code} /> : <LandingPage/>} />
-        <Route path="/playlist" element={code ? <DashboardPage code={code} /> : <LandingPage/>} />
-        <Route path="/track/:trackId/:musicName/:albumName/:artist" element={<Track/>}/>
-      </Route>
     </Routes>
   </BrowserRouter>
 );

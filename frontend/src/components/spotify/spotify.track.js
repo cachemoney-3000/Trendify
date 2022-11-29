@@ -23,34 +23,40 @@ const featureLabelCSS = "mb-4 text-xs text-slate-400";
 const featureTextCSS = "lg:text-3xl text-xl font-bold mt-4 text-slate-200";
 
 const Track = () => {
-    const accessToken = localStorage.getItem("accessToken");
     const { trackId, musicName, albumName, artist } = useParams();
-    var obj = {
-        trackId: trackId,
-        musicName: musicName,
-        albumName: albumName,
-        artist: artist,
-    };
 
-	const [features, setFeatures] = useState([0, 0, 0, 0, 0, 0, 0])
+    const [songId, setSongId] = useState();
+    const [album, setAlbum] = useState();
+    const [title, setTitle] = useState();
+    const [singer, setSinger] = useState();
+
+    const [features, setFeatures] = useState([0, 0, 0, 0, 0, 0, 0])
     const [song, setSong] = useState();
     const [audioInfo, setAudioInfo] = useState();
     const [error, setError] = useState();
 
-    const songId = obj.trackId;
-    const album = obj.albumName;
-    const title = obj.musicName;
-    const singer = obj.artist;;
-    console.log(songId, album, title, singer);
+    const accessToken = localStorage.getItem("accessToken");
     // ACCESS TOKEN
     useEffect(() => {
         if (!accessToken) return;
         spotifyApi.setAccessToken(accessToken);
     }, [accessToken])
+    
+    
+    useEffect(() => {
+        if (!accessToken) return;
+        setSongId(trackId)
+        setAlbum(albumName)
+        setTitle(musicName)
+        setSinger(artist)
+        //console.log(trackId, albumName, musicName, artist);
+    }, [accessToken, trackId, albumName, musicName, artist])
+
+
     // GET SONG INFORMATION
     useEffect(() => 
 	{
-        if(!accessToken && !songId && !album && !title && !singer && !song) return;
+        if(!songId && !album && !title && !singer) return;
         spotifyApi.getAudioFeaturesForTrack(songId)
         .then(function(songFeatures) {
             setFeatures(songFeatures.body);
@@ -69,7 +75,7 @@ const Track = () => {
             console.log(err);
             setError(err);
         });
-	}, [songId, album, title, accessToken, singer, song])
+	}, [songId, album, title, singer])
 
 
 	const feats = {

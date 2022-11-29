@@ -16,7 +16,7 @@ const spotifyApi = new SpotifyWebApi({
 export default function Dashboard({ code }) {   
     const currentPath = window.location.pathname;
     const accessToken = useAuth(code);
-
+    // console.log("code ", code)
     localStorage.setItem("accessToken", accessToken);
 
     // Stores the result from the api calls

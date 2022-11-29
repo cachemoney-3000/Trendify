@@ -6,6 +6,11 @@ import noImageArtist from "../../images/unknownArtist.png"
 import noImageSong from "../../images/unknownSong.png"
 import noImageProfile from "../../images/unknownProfile.png"
 
+const logOut = () => {
+    window.localStorage.removeItem('accessToken');
+    window.location.reload();
+}
+
 export default function Profile({ profile, numFollowing, playlist, topTracks, topArtists }) {
     if (!profile || !numFollowing || !playlist|| !topTracks || !topArtists ) return;
     if(topArtists.length < 1 || topTracks.length < 1) {
@@ -13,7 +18,7 @@ export default function Profile({ profile, numFollowing, playlist, topTracks, to
             <ErrorMessage />
         )
     } 
-
+    
     const artists = topArtists.slice(0,10).map((artist) => {
         return (
             <a href = {artist.external_urls.spotify} target="_blank" rel="noopener noreferrer"
@@ -37,7 +42,7 @@ export default function Profile({ profile, numFollowing, playlist, topTracks, to
 
     const tracks = topTracks.slice(0,10).map((track) => {
         return (
-            <a href = {`/track/${track.id}/${track.name.replace('/', '')}/${track.album.name.replace('/', '')}/${track.artists[0].name.replace('/', '')}`} target="_blank" rel="noopener noreferrer"
+            <a href = {`/track/${track.id}/${track.name.replace('/', '')}/${track.album.name.replace('/', '')}/${track.artists[0].name.replace('/', '')}`}
                 class="flex items-center gap-3 rounded-2xl bg-[#292f3d] mb-3 hover:bg-[#3e4450] no-underline duration-200
                 hover:scale-105 transition duration-300 ease-in-out text-slate-50 hover:text-sky-300">
                 <span class="rounded-full ml-3">
@@ -65,7 +70,7 @@ export default function Profile({ profile, numFollowing, playlist, topTracks, to
     `${noImageProfile}` : `${profile.images[0].url}`;
 
   return (
-    <div class = "ml-auto mr-auto lg:px-10 px-2 lg:pb-20 pb-24">
+    <div class = "ml-auto mr-auto lg:px-10 px-2 lg:pb-20 pb-24 lg:py-0 py-4">
         <div class="ml-auto mr-auto min-h-fit lg:w-3/6 flex items-center justify-center">
             <div class="p-6 rounded-xl w-full">
                 <img draggable="false" src={topArtists[0].images[0].url}
@@ -108,7 +113,8 @@ export default function Profile({ profile, numFollowing, playlist, topTracks, to
                         border-4 border-slate-400 rounded-full shadow
                         font-bold lg:py-3 lg:px-5 px-3 py-1
                         relative mb-2 block transition-all 
-                        duration-300 ml-auto mr-auto lg:text-xl text-sm font-bold tracking-wider">
+                        duration-300 ml-auto mr-auto lg:text-xl text-sm font-bold tracking-wider"
+                        onClick={logOut}>
                     LOGOUT
                     </button>
                 </a>
