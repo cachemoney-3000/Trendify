@@ -1,8 +1,8 @@
 import {useState} from 'react';
 import { formatDuration } from './player/spotify.trackUtils';
-import ErrorMessage from "./spotify.error"
-import spotifyLogo from "../../images/spotifyIcon.png"
-import noImageSong from "../../images/unknownSong.png"
+import noImageSong from "../../images/unknownSong.png";
+import ErrorMessage from "./spotify.error";
+import spotifyLogo from "../../images/spotifyIcon.png";
 
 export default function Playlist({playlist, recents}) {
 
@@ -28,8 +28,8 @@ export default function Playlist({playlist, recents}) {
             p-2 mr-auto ml-auto w-fit duration-500 no-underline
             hover:scale-105 transition duration-200 ease-in-out text-slate-50 hover:text-sky-300">
           <div class="group relative">
-              <img class="w-full lg:w-64 md:w-64 w-32 block rounded mr-auto ml-auto" src={card.images[0].url} alt="" draggable="false"/>
-          </div>
+              <img class="w-full lg:w-64 md:w-64 w-32 block rounded mr-auto ml-auto" src={(card.images.length === 0) ? `${noImageSong}` : `${card.images[0].url}`} alt="" draggable="false"/>
+          </div>                  
           <div class="p-2">
               <h3 class="lg:text-xl md:text-lg text-xs lg:mb-1 overflow-hidden truncate lg:w-60 md:w-44 w-24">{card.name}</h3>
               <p class="text-gray-400 -mb-1 lg:text-lg md:text-md text-xs">{card.tracks.total} Tracks</p>
@@ -69,7 +69,7 @@ export default function Playlist({playlist, recents}) {
   })
 
   return (
-    <div class = "lg:py-0 py-4">
+    <div>
       {playlist && recents ? 
         <div class = "ml-auto mr-auto lg:px-10 pb-20 md:pb-32 lg:pt-5 pt-3">
           <div className="sm:pl-5 ml-auto mr-auto text-gray-500 lg:space-x-4 space-x-3 mb-6 lg:w-3/6 w-11/12 ">

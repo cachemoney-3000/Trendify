@@ -70,7 +70,7 @@ export default function Profile({ profile, numFollowing, playlist, topTracks, to
     `${noImageProfile}` : `${profile.images[0].url}`;
 
   return (
-    <div class = "ml-auto mr-auto lg:px-10 px-2 lg:pb-20 pb-24 lg:py-0 py-4">
+    <div class = "ml-auto mr-auto lg:px-10 px-2 lg:pb-20 pb-24">
         <div class="ml-auto mr-auto min-h-fit lg:w-3/6 flex items-center justify-center">
             <div class="p-6 rounded-xl w-full">
                 <img draggable="false" src={topArtists[0].images[0].url}

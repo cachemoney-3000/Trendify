@@ -51,7 +51,7 @@ export default function Artists({ topArtists, topArtistsSixMos, topArtistsThreeM
   });
 
   return (
-    <div class = "lg:py-0 py-4">
+    <div>
       {artists ?
         <div class = "lg:px-10 pb-20 md:pb-32 lg:pt-5 pt-3">
         <div className="lg:w-4/6 md:w-9/12 w-10/12 sm:pl-5 ml-auto mr-auto text-gray-500 lg:space-x-4 space-x-2 mb-6">
